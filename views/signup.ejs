@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        user name
+    </h1>
+    <input type="text" id="account">
+    <h1>
+        password
+    </h1>
+    <input type="text" id="password">
+    <h1>
+        confirm password
+    </h1>
+    <input type="text" id="password_c">
+    <a href="/user">sign up</a>
+    <!--<input type="button" onclick="signup" value="sign up">-->
+    <script>
+        function signup(){
+            var password=document.getElementById('password').value;
+            var password_c=document.getElementById('password_c').value;
+            var user=document.getElementById('account').value;
+            if(password!==password_c){
+                alert("passwords not match");
+                return;
+            }
+            window.location.replace("/user/"+user);
+        }
+    </script>
+</body>
+
+</html>

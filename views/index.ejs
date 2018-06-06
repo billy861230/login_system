@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    login
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/zh-tw.js'></script>
+</head>
+
+<body>
+  <h1>
+    user name
+  </h1>
+  <input type="text" id="account">
+  <h1>
+    password
+  </h1>
+  <input type="text" id="password">
+  <input type="button" onclick="login()" value="log in">
+  <h1>
+    do not have an account?
+  </h1>
+  <a href="/signup">sign up</a>
+</body>
+<script>
+  socket = io.connect('ws://localhost:3000');
+  socket.on('err', function (data) {
+    alert(data);
+  });
+  socket.on('login', (log) => {
+    window.location('/user/' + log);
+  });
+  var acc=document.getElementById('account');
+  var account=acc.value;
+  var password = document.getElementById('password').value;
+  function login() {
+    var account = document.getElementById('account');
+    var password = document.getElementById('password');
+    let data = {
+      acc: account,
+      password: password
+    };
+    socket.emit('login', data);
+    console.log('1');
+  }
+</script>
+
+</html>
